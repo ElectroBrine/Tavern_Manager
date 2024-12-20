@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://r6khb07jvoqo"]
+
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_javko"]
+[ext_resource type="FontFile" uid="uid://ckg4tcn1ltlqi" path="res://assets/fonts/PixelOperator8.ttf" id="2_h32wt"]
+
+[node name="UI" type="Camera2D"]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+script = ExtResource("1_javko")
+
+[node name="Clock" type="Label" parent="."]
+offset_left = -144.0
+offset_top = -81.0
+offset_right = -104.0
+offset_bottom = -58.0
+theme_override_fonts/font = ExtResource("2_h32wt")
