@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccb0b32ionb7k"]
+[gd_scene load_steps=22 format=3 uid="uid://ccb0b32ionb7k"]
 
 [ext_resource type="Texture2D" uid="uid://clv6o3llpdisr" path="res://assets/sprites/world_tileset.png" id="1_1pgj8"]
 [ext_resource type="PackedScene" uid="uid://3ch5oqd0iy0h" path="res://scenes/player.tscn" id="1_eovn4"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_sm8wx"]
+[ext_resource type="Script" path="res://scripts/wine_button.gd" id="5_i8kwg"]
+[ext_resource type="Texture2D" uid="uid://daw6nykxd0gja" path="res://assets/sprites/fruit.png" id="6_bplsg"]
 [ext_resource type="PackedScene" uid="uid://sib2ffy585o4" path="res://scenes/slime.tscn" id="6_ndvyx"]
+[ext_resource type="Script" path="res://scripts/beer.gd" id="7_c5san"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rtyev"]
 texture = ExtResource("1_1pgj8")
@@ -171,15 +174,93 @@ texture = ExtResource("1_1pgj8")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rtyev")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hw20x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22to0"]
+atlas = ExtResource("6_bplsg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0cjp"]
+atlas = ExtResource("6_bplsg")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8jq8"]
+atlas = ExtResource("6_bplsg")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qihu8"]
+atlas = ExtResource("6_bplsg")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uf6oq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22to0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0cjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8jq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qihu8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fj8l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foggr"]
+atlas = ExtResource("6_bplsg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhvww"]
+atlas = ExtResource("6_bplsg")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vxsq"]
+atlas = ExtResource("6_bplsg")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2ius"]
+atlas = ExtResource("6_bplsg")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1n3gq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foggr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhvww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vxsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2ius")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_sm8wx")
 
-[node name="Timer" type="Timer" parent="GameManager"]
+[node name="GameTime" type="Timer" parent="GameManager"]
+unique_name_in_owner = true
 wait_time = 600.0
 one_shot = true
+autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(2, 0)
@@ -196,3 +277,31 @@ layer_2/tile_data = PackedInt32Array(327676, 262144, 9, 327677, 262144, 9, 32767
 
 [node name="slime" parent="." instance=ExtResource("6_ndvyx")]
 position = Vector2(38, 0)
+
+[node name="Wine Button" type="Area2D" parent="."]
+position = Vector2(-86, -12)
+collision_mask = 2
+script = ExtResource("5_i8kwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wine Button"]
+shape = SubResource("CircleShape2D_hw20x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Wine Button"]
+sprite_frames = SubResource("SpriteFrames_uf6oq")
+autoplay = "default"
+frame_progress = 0.936542
+
+[node name="Beer" type="Area2D" parent="."]
+position = Vector2(-62, -12)
+collision_mask = 2
+script = ExtResource("7_c5san")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beer"]
+shape = SubResource("CircleShape2D_5fj8l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Beer"]
+sprite_frames = SubResource("SpriteFrames_1n3gq")
+autoplay = "default"
+
+[connection signal="body_entered" from="Wine Button" to="Wine Button" method="_on_body_entered"]
+[connection signal="body_entered" from="Beer" to="Beer" method="_on_body_entered"]

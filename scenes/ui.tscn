@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://r6khb07jvoqo"]
 
-[ext_resource type="Script" path="res://scenes/ui.gd" id="1_javko"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_javko"]
 [ext_resource type="FontFile" uid="uid://ckg4tcn1ltlqi" path="res://assets/fonts/PixelOperator8.ttf" id="2_h32wt"]
 
 [node name="UI" type="Camera2D"]
