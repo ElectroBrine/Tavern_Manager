@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://sib2ffy585o4"]
 
-[ext_resource type="Script" path="res://scripts/slime.gd" id="1_isth6"]
+[ext_resource type="Script" path="res://scripts/customer.gd" id="1_isth6"]
 [ext_resource type="Texture2D" uid="uid://c3adx27ks2cal" path="res://assets/sprites/slime_green.png" id="1_o1xq2"]
 [ext_resource type="FontFile" uid="uid://ckg4tcn1ltlqi" path="res://assets/fonts/PixelOperator8.ttf" id="3_u5ber"]
 
@@ -55,24 +55,24 @@ autoplay = "default"
 frame_progress = 0.34974
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(9.53674e-07, -34.1657)
 shape = SubResource("CircleShape2D_8tkcc")
 
-[node name="Test Box" type="Node" parent="."]
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Order Box" type="Node2D" parent="."]
 visible = false
+
+[node name="Polygon2D" type="Polygon2D" parent="Order Box"]
 z_index = 1
 position = Vector2(-14, -72)
 scale = Vector2(11.0667, 11.0667)
 color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 polygon = PackedVector2Array(4, 0, 4, -15, 28, -15, 28, -4, 8, -4)
 
-[node name="Label" type="Label" parent="."]
-visible = false
+[node name="Label" type="Label" parent="Order Box"]
 z_index = 1
 anchors_preset = -1
 anchor_left = -0.000233022
@@ -89,6 +89,27 @@ theme_override_font_sizes/font_size = 0
 text = "Test Message"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Call box" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, 45.5542)
+scale = Vector2(1.61703, 1.61703)
+
+[node name="Polygon2D" type="Polygon2D" parent="Call box"]
+color = Color(100, 0, 0, 0.411)
+polygon = PackedVector2Array(0, -74.0256, -5.69427, -85.4141, -17.0828, -85.4141, -17.0828, -113.885, 17.0828, -113.885, 17.0828, -85.4141, 5.69427, -85.4141)
+
+[node name="!" type="Label" parent="Call box"]
+offset_left = -17.0
+offset_top = -114.0
+offset_right = 17.0
+offset_bottom = -85.0
+theme_override_colors/font_color = Color(69.729, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_u5ber")
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
