@@ -43,7 +43,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_8tkcc"]
 radius = 103.128
 
-[node name="slime" type="Node2D"]
+[node name="Customer" type="Node2D"]
 scale = Vector2(0.175615, 0.175615)
 script = ExtResource("1_isth6")
 
@@ -110,6 +110,14 @@ theme_override_fonts/font = ExtResource("3_u5ber")
 text = "!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Drink timer" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

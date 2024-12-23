@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://05h210sc6vlq"]
+
+[ext_resource type="Script" path="res://scripts/taps.gd" id="1_lcvjg"]
+
+[node name="Tap" type="Node2D"]
+script = ExtResource("1_lcvjg")
+
+[node name="Tap 1" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Tap 1"]
+color = Color(0.266575, 0.266575, 0.266575, 1)
+polygon = PackedVector2Array(-14, -25, -11, -25, -11, -28, -9, -28, -9, -42, -16, -42, -16, -28, -14, -28)
+
+[node name="Button" type="Button" parent="Tap 1"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -17.0
+offset_top = -43.0
+offset_right = -8.0
+offset_bottom = -25.0
+
+[node name="Tap 2" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Tap 2"]
+position = Vector2(14, 0)
+color = Color(0.266575, 0.266575, 0.266575, 1)
+polygon = PackedVector2Array(-14, -25, -11, -25, -11, -28, -9, -28, -9, -42, -16, -42, -16, -28, -14, -28)
+
+[node name="Button" type="Button" parent="Tap 2"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -3.0
+offset_top = -43.0
+offset_right = 6.0
+offset_bottom = -25.0
+
+[node name="Tap 3" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Tap 3"]
+position = Vector2(28, 0)
+color = Color(0.266575, 0.266575, 0.266575, 1)
+polygon = PackedVector2Array(-14, -25, -11, -25, -11, -28, -9, -28, -9, -42, -16, -42, -16, -28, -14, -28)
+
+[node name="Button" type="Button" parent="Tap 3"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 11.0
+offset_top = -43.0
+offset_right = 20.0
+offset_bottom = -25.0
+
+[node name="Tap 4" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Tap 4"]
+position = Vector2(40, 0)
+color = Color(0.266575, 0.266575, 0.266575, 1)
+polygon = PackedVector2Array(-14, -25, -11, -25, -11, -28, -9, -28, -9, -42, -16, -42, -16, -28, -14, -28)
+
+[node name="Button" type="Button" parent="Tap 4"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 23.0
+offset_top = -43.0
+offset_right = 32.0
+offset_bottom = -25.0
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.355679, 0.241935, 0.154282, 1)
+polygon = PackedVector2Array(-22, 0, 68, 0, 68, -25, -22, -25)
+
+[connection signal="pressed" from="Tap 1/Button" to="." method="_on_button1_pressed"]
+[connection signal="pressed" from="Tap 2/Button" to="." method="_on_button2_pressed"]
+[connection signal="pressed" from="Tap 3/Button" to="." method="_on_button3_pressed"]
+[connection signal="pressed" from="Tap 4/Button" to="." method="_on_button4_pressed"]
